@@ -14,9 +14,7 @@ def send_email(email, subject, quote):
             server.login(GMAIL_USER, GMAIL_PASSWORD)
             email_message = f"Subject: {subject}\n\n** {quote} **"
             server.sendmail(GMAIL_USER, email, email_message)
-
         print(f"Successfully sent email to {email}")
-
     except Exception as e:
         print(f"Failed to send email to {email}: {e}")
 
@@ -34,7 +32,6 @@ def check_day():
                 quote = row["quote"]
                 subject = "* Quotes *"
                 send_email(email, subject, quote)
-
     else:
         print(f"Sorry, today is {day}. Emails are only sent on Monday. We'll send the quotes next Monday.")
 
