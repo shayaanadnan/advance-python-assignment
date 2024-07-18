@@ -7,12 +7,12 @@ SMTP_PORT = 587
 GMAIL_USER = "shayanadnan81@gmail.com"
 GMAIL_PASSWORD = "xwsb qgej ugys amll"
 
-def send_email(email, subject, motivationalquote):
+def send_email(email, subject, quote):
     try:
         with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
             server.starttls()
             server.login(GMAIL_USER, GMAIL_PASSWORD)
-            email_message = f"Subject: {subject}\n\n** {motivationalquote} **"
+            email_message = f"Subject: {subject}\n\n** {quote} **"
             server.sendmail(GMAIL_USER, email, email_message)
 
         print(f"Successfully sent email to {email}")
@@ -25,21 +25,15 @@ def check_day():
     day = date.strftime("%A")
 
     if day == "Monday":
-        emails = pd.read_csv("emails.csv")
+        email_list = pd.read_csv("email_list.csv")
+        quotes = pd.read_csv("quotes.csv")
 
-        for index, row in emails.iterrows():
+        for index, row in email_list.iterrows():
             email = row["email"]
-
-            motivationalquotes = pd.read_csv("motivationalquotes.csv")
-
-            for index, row in motivationalquotes.iterrows():
-                motivationalquote = row["motivationalquote"]
-
-                subject = "* Motivational Quotes *"
-                send_email(email, subject, motivationalquote)
+            for index, row in quotes.iterrows():
+                quote = row["quote"]
+                subject = "* Quotes *"
+                send_email(email, subject, quote)
 
     else:
-        print(f"Sorry, today is {day}. Emails are only sent on Monday.We'll send the motivational quotes next Monday.")
-
-if __name__ == "__main__":
-    check_day()
+        print(f"Sorry, today is {
