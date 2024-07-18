@@ -36,4 +36,7 @@ def check_day():
                 send_email(email, subject, quote)
 
     else:
-        print(f"Sorry, today is {
+        print(f"Sorry, today is {day}. Emails are only sent on Monday. We'll send the quotes next Monday.")
+
+if __name__ == "__main__":
+    check_day()
