@@ -28,10 +28,9 @@ def check_day():
 
         for index, row in email_list.iterrows():
             email = row["email"]
-            for index, row in quotes.iterrows():
-                quote = row["quote"]
-                subject = "* Quotes *"
-                send_email(email, subject, quote)
+            quote = quotes.iloc[index % len(quotes)]["quote"]
+            subject = "* Quotes *"
+            send_email(email, subject, quote)
     else:
         print(f"Sorry, today is {day}. Emails are only sent on Monday. We'll send the quotes next Monday.")
 
