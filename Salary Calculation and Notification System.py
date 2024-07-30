@@ -65,7 +65,7 @@ def main():
             f"Payroll Tax Deducted: PKR {tax}\n"
             f"Net Salary After Tax: PKR {net_salary}\n\n"
             "Best regards,\n"
-            "[Your Company Name]"
+            "[Shayan Adnan]"
         )
 
         send_email(email, subject, message)
